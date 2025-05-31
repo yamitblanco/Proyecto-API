@@ -1,0 +1,44 @@
+<h2>Editar Producto</h2> <!-- Título de la página de edición de producto -->
+
+<!-- Formulario para editar un producto -->
+<form method="POST">
+  
+  <!-- Campo oculto para el ID del producto (no visible al usuario) -->
+  <input type="hidden" name="id" value="{{ producto[0] }}">
+
+  <!-- Campo para ingresar el nombre del producto -->
+  <label>Nombre:</label>
+  <input type="text" name="nombre_producto" value="{{ producto[1] }}" required> <!-- El valor por defecto es el nombre del producto -->
+
+  <!-- Campo para seleccionar el estado del producto -->
+  <label>Estado:</label>
+  <select name="estado" required>
+    <!-- Opción para el estado 'disponible', seleccionada si coincide con el estado actual -->
+    <option value="disponible" {% if producto[2] == 'disponible' %}selected{% endif %}>Disponible</option>
+    
+    <!-- Opción para el estado 'agotado', seleccionada si coincide con el estado actual -->
+    <option value="agotado" {% if producto[2] == 'agotado' %}selected{% endif %}>Agotado</option>
+    
+    <!-- Opción para el estado 'en camino', seleccionada si coincide con el estado actual -->
+    <option value="en camino" {% if producto[2] == 'en camino' %}selected{% endif %}>En camino</option>
+  </select>
+
+  <!-- Campo oculto para el ID del producto (usado también en la base de datos) -->
+  <input type="hidden" name="id_producto" value="{{ producto[0] }}">
+
+  <!-- Campo para ingresar la ubicación del producto -->
+  <label>Ubicación:</label>
+  <input type="text" name="ubicacion" value="{{ producto[3] }}" required> <!-- El valor por defecto es la ubicación del producto -->
+
+  <!-- Campo para ingresar la cantidad del producto -->
+  <label>Cantidad:</label>
+  <input type="number" name="cantidad" value="{{ producto[4] }}" required> <!-- El valor por defecto es la cantidad disponible -->
+
+  <!-- Campo para ingresar el precio del producto -->
+  <label>Precio:</label>
+  <input type="number" name="precio" step="50" value="{{ producto[5] }}" required> <!-- El valor por defecto es el precio del producto -->
+
+  <!-- Botón para guardar los cambios con confirmación -->
+  <button type="submit" onclick="return confirm('¿Confirmas que deseas guardar los cambios?')">Guardar Cambios</button>
+
+</form>

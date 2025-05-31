@@ -1,0 +1,80 @@
+<!DOCTYPE html> <!-- Define el tipo de documento como HTML5 -->
+<html lang="es"> <!-- Establece el idioma principal como español -->
+
+{% extends 'base.html' %}
+
+{% block title %}Bienvenido{% endblock %}
+
+{% block content %}
+
+
+<head>
+  <meta charset="UTF-8"> <!-- Codificación de caracteres UTF-8 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Diseño adaptable a dispositivos móviles -->
+  <meta name="description" content="Sistema de gestión de inventarios accesible y fácil de usar."> <!-- Descripción para motores de búsqueda -->
+
+  <title>Sistema de Gestión de Inventarios</title> <!-- Título que se muestra en la pestaña del navegador -->
+
+  <!-- Enlace a la hoja de estilos CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body> <!-- Comienza el contenido del cuerpo del documento -->
+
+  <!-- Encabezado principal de la página -->
+  <header>
+    <h1>Bienvenido a Stock .Plus<br>Tu software de gestión de inventarios</h1>
+  </header>
+
+  <!-- Barra de navegación principal del sistema -->
+  <nav id="mapanav_1">
+    <a href="{{ url_for('bienvenido') }}">Gestión de Inventario</a>
+    <a href="{{ url_for('informes') }}">Generación de Informes</a>
+    <a href="{{ url_for('contacto') }}">Contacto</a>
+    <a id="cerrarSesion" href="{{ url_for('inicio') }}">Cerrar sesión</a>
+  </nav>
+
+  <!-- Sección principal del contenido -->
+  <main>
+    <div> <!-- Contenedor general (puede eliminarse si no se estiliza con CSS) -->
+
+      <!-- Sección de formulario de contacto -->
+      <section id="contact">
+        <h2 id="h3_centrado">Contacto</h2>
+
+        <!-- Formulario de contacto para recibir mensajes de usuarios -->
+        <form id="arreglar_formulario" action="contact_submit.html" method="POST" aria-label="Formulario de contacto">
+
+          <!-- Campo de entrada para el nombre -->
+          <label for="nombre">Nombre:</label>
+          <input type="text" id="nombre" name="nombre" required>
+
+          <!-- Campo de entrada para el correo electrónico -->
+          <label for="email">Correo electrónico:</label>
+          <input type="email" id="email" name="email" required>
+
+          <!-- Campo de texto para el mensaje -->
+          <label for="mensaje">Mensaje:</label>
+          <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
+
+          <!-- Botón de envío del formulario -->
+          <input type="submit" value="Enviar">
+
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <!-- Pie de página con derechos de autor -->
+  <footer>
+    <p>© 2024 Sistema de Gestión de Inventarios</p>
+  </footer>
+
+  <!-- Inclusión de scripts JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- Librería de alertas -->
+  <script src="{{ url_for('static', filename='interacciones.js') }}"></script> <!-- Script personalizado -->
+{% endblock %}
+</body>
+
+</html>
+

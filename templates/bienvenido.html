@@ -1,0 +1,119 @@
+<!DOCTYPE html> <!-- Define el tipo de documento como HTML5 -->
+<html lang="es"> <!-- Establece el idioma principal del contenido como español -->
+
+{% extends 'base.html' %}
+
+{% block title %}Bienvenido{% endblock %}
+
+{% block content %}
+
+
+
+<head>
+  <meta charset="UTF-8"> <!-- Codificación de caracteres UTF-8 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Permite el diseño responsivo en dispositivos móviles -->
+  <meta name="description" content="Sistema de gestión de inventarios accesible y fácil de usar."> <!-- Breve descripción del sitio para SEO -->
+
+  <title>Sistema de Gestión de Inventarios</title> <!-- Título que aparece en la pestaña del navegador -->
+
+  <!-- Enlace a la hoja de estilos CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body id="gestion-inventario"> <!-- Inicio del cuerpo del documento -->
+
+  <!-- Encabezado del sitio -->
+  <header>
+    <h1>Bienvenido a Stock .Plus<br>Tu software de gestión de inventarios</h1>
+  </header>
+
+  <!-- Barra de navegación principal -->
+  <nav id="mapanav_3">
+    <a href="{{ url_for('bienvenido') }}">Gestión de Inventario</a>
+    <a href="{{ url_for('informes') }}">Generación de Informes</a>
+    <a href="{{ url_for('contacto') }}">Contacto</a>
+    <a href="{{ url_for('inicio') }}">Cerrar sesión</a> <!-- Enlace para cerrar sesión del usuario -->
+  </nav>
+
+  <!-- Sección principal para el manejo de inventario -->
+  <section id="manejo_inventario">
+    <h2 id="h2_centrado">Gestión de Inventario</h2>
+
+    <!-- Formulario para agregar nuevos productos al inventario -->
+    <form id="formulario_producto" action="/registro_productos" method="POST" aria-label="Formulario de registro">
+
+      <!-- Campo para el nombre del producto -->
+      <label for="nombre_producto">Nombre del producto:</label>
+      <input type="text" id="nombre_producto" name="nombre_producto" required>
+
+      <!-- Campo para seleccionar el estado del producto -->
+      <label for="estado">Estado:</label>
+      <select id="estado" name="estado" required>
+        <option value="" disabled selected>Selecciona un estado</option>
+        <option value="disponible">Disponible</option>
+        <option value="agotado">Agotado</option>
+        <option value="en camino">En camino</option>
+      </select>
+
+      <!-- Campo para indicar la ubicación del producto -->
+      <label for="ubicacion">Ubicación:</label>
+      <input type="text" id="ubicacion" name="ubicacion" required>
+
+      <!-- Campo para ingresar la cantidad disponible -->
+      <label for="cantidad">Cantidad:</label>
+      <input type="number" id="cantidad" name="cantidad" required>
+
+      <!-- Campo para ingresar el precio del producto -->
+      <label for="precio">Precio:</label>
+      <input type="number" id="precio" name="precio" step="50" required>
+
+      <!-- Botón para enviar el formulario -->
+      <input type="submit" value="Agregar Producto">
+
+      <!-- Campo oculto para registrar la fecha del registro -->
+      <input type="hidden" id="fecha_registro" name="fecha_registro">
+    </form>
+  </section>
+
+  <!-- Pie de página del sitio -->
+  <footer>
+    <p>© 2024 Sistema de Gestión de Inventarios</p>
+  </footer>
+
+  <!-- Script para capturar mensajes flash y mostrarlos con SweetAlert -->
+  <script>
+    window.flashMessages = [];
+
+    {% with messages = get_flashed_messages(with_categories = true) %}
+      {% for category, message in messages %}
+        window.flashMessages.push({
+          category: "{{ category }}",
+          message: "{{ message }}"
+        });
+      {% endfor %}
+    {% endwith %}
+  </script>
+
+  <!-- Script que escucha el evento DOMContentLoaded y muestra alertas según los mensajes flash -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      if (window.flashMessages && window.flashMessages.length > 0) {
+        window.flashMessages.forEach(msg => {
+          Swal.fire({
+            icon: msg.category,
+            title: msg.category === 'success' ? 'Éxito' : 'Error',
+            text: msg.message,
+            confirmButtonText: 'OK'
+          });
+        });
+      }
+    });
+  </script>
+
+  <!-- Inclusión de bibliotecas JavaScript externas -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- Librería para mostrar alertas bonitas -->
+  <script src="{{ url_for('static', filename='js/interacciones.js') }}"></script> <!-- Script personalizado -->
+{% endblock %}
+</body>
+
+</html>

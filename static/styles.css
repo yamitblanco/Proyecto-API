@@ -1,0 +1,168 @@
+body {
+    
+    font-family: Arial, sans-serif; /* Establece la fuente del texto */
+    line-height: 1.6; /* Espaciado entre líneas */
+    margin: 0; /* Elimina el margen por defecto */
+    padding: 0; /* Elimina el padding por defecto */
+    background-color: #f4f4f4; /* Color de fondo de la página */
+    color: #333; /* Color del texto */
+    display: block; /* Activa Flexbox para el diseño */
+    flex-direction: column; /* Organiza los elementos en columna */
+    justify-content: center; /* Centra los elementos verticalmente */
+    align-items: center; /* Centra los elementos horizontalmente */
+    height: auto; /* Ocupa toda la altura de la ventana */
+}
+
+header, footer {
+    background-color: #333; /* Color de fondo del header y footer */
+    color: white; /* Color del texto en el header y footer */
+    text-align: center; /* Centra el texto */
+    padding: 1rem; /* Espaciado interno */
+    width: 100%; /* Ocupa todo el ancho */
+}
+
+nav {
+    margin: 10px 0; /* Margen vertical para el nav */
+    text-align: center; /* Centra el texto en el nav */
+}
+
+nav a {
+    text-decoration: none; /* Sin subrayado en los enlaces */
+    color: #333; /* Color del texto en los enlaces */
+    margin: 0 15px; /* Margen horizontal entre enlaces */
+    font-size: 1.2rem; /* Tamaño de la fuente */
+}
+
+main {
+    padding: 20px; /* Espaciado interno del main */
+    text-align: center; /* Centra el texto dentro del main */
+}
+
+section {
+    margin-bottom: 20px; /* Margen inferior para separar secciones */
+}
+
+h1 {
+    color: #ffffffec; /* Color del título principal */
+}
+
+h2 {
+    color: #333; /* Color del título secundario */
+    text-align: center;
+}
+
+#h3_centrado {
+    color: #333; /* Color del título terciario */
+    text-align: center; /* Centra el texto */
+    margin-top: -1%;
+}
+
+h5 {
+    margin-top: -1%;
+    text-align: center;
+}
+
+form {
+    display: flex; /* Activa Flexbox para el formulario */
+    flex-direction: column; /* Organiza los elementos en columna */
+    align-items: center; /* Centra los elementos dentro del formulario */
+}
+
+form input, form button {
+    display: block; /* Muestra los inputs como bloques */
+    width: 17%; /* Ancho de los inputs */
+    max-width: 200px;
+    padding: 10px; /* Espaciado interno */
+    margin: 5px 0; /* Margen vertical */
+    border-radius: 5px; /* Bordes redondeados */
+}
+
+form input[type="submit"] {
+    background-color: #333; /* Color de fondo del botón */
+    color: white; /* Color del texto en el botón */
+    border: none; /* Sin borde */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+}
+
+.inicio_boton {
+    display: flex; /* Activa Flexbox para centrar el botón */
+    justify-content: center; /* Centra el botón horizontalmente */
+    width: 100%; /* Ancho del contenedor del botón */
+}
+
+.olvido-contraseña {
+    align-self: flex-start; /* Alinea este div a la izquierda */
+    margin-left: 700px; /* Margen izquierdo */
+    margin-top: -30px; /* Espacio superior */
+}
+
+.enlace-grande {
+    font-style: Arial, sans-serif; /* Tipo de letra */
+    font-size: 16.5px; /* Tamaño de la fuente */
+    color: blue; /* Color del texto */
+    text-decoration: underline; /* Subrayado */
+    align-self: flex-start; /* Alinea este div a la izquierda */
+    margin-left: 140px; /* Margen izquierdo */
+    margin-top: 0px; /* Espacio superior */
+}
+
+.inicio_boton {
+    display: flex; /* Activa Flexbox */
+    justify-content: center; /* Centra el contenido horizontalmente */
+    width: 100%; /* Ocupará el ancho completo del contenedor */
+    margin-top: 20px; /* Espacio superior */
+}
+
+.boton-final {
+    align-self: flex-start;
+    margin-left: 90px; /* Margen izquierdo */
+    display: flex; /* Activa Flexbox */
+    justify-content: center; /* Centra el contenido horizontalmente */
+    width: 50%; /* Ocupará el ancho completo del contenedor */
+    margin-top: 0px; /* Espacio superior */
+}
+
+/* Otros estilos para diferentes clases y elementos */
+
+.usuario-info {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 0.85em;         /* Tamaño legible */
+  max-width: 220px;
+  z-index: 9999;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  font-family: Arial, sans-serif;
+  line-height: 1.3em;
+  overflow: hidden;
+  word-wrap: break-word;
+  width: auto;
+}
+
+.usuario-info form,
+.usuario-info button,
+.usuario-info input {
+    all: unset; /* Borra todos los estilos heredados */
+}
+
+
+#registrarse form input, form button {
+    display: block; /* Muestra los inputs como bloques */
+    width: 100%; /* Ancho de los inputs */
+    max-width: 200px;
+    padding: 10px; /* Espaciado interno */
+    margin: 5px 0; /* Margen vertical */
+    border-radius: 5px; /* Bordes redondeados */
+}
+
+#boton_registrarse form input[type="submit"] {
+    background-color: #333; /* Color de fondo del botón */
+    color: white; /* Color del texto en el botón */
+    border: none; /* Sin borde */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    text-align: left; /* Centra el texto dentro del botón */
+}

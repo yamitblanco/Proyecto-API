@@ -1,0 +1,68 @@
+<!DOCTYPE html> <!-- Define el tipo de documento como HTML5 -->
+<html lang="es"> <!-- Establece el idioma del documento como español -->
+
+{% extends 'base.html' %}
+
+{% block title %}Bienvenido{% endblock %}
+
+{% block content %}
+
+
+<head>
+    <meta charset="UTF-8"> <!-- Define la codificación de caracteres como UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Configura el diseño responsivo para dispositivos móviles -->
+    <meta name="description" content="Sistema de gestión de inventarios accesible y fácil de usar."> <!-- Descripción de la página -->
+    <title>Sistema de Gestión de Inventarios</title> <!-- Título que aparecerá en la pestaña del navegador -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"> <!-- Enlace a la hoja de estilos CSS -->
+</head>
+
+<body> <!-- Comienza el cuerpo del documento -->
+
+    <!-- Encabezado principal de la página -->
+    <header>    
+        <h1>Bienvenido a Stock .Plus<br> Tu software de gestión de inventarios</h1> <!-- Título principal -->
+    </header>
+
+    <!-- Navegación principal de la página -->
+    <nav id="mapanav_4">
+        <a href="{{ url_for('bienvenido') }}">Gestión de Inventario</a> <!-- Enlace a la sección de gestión de inventario -->
+        <a href="{{ url_for('informes') }}">Generación de Informes</a> <!-- Enlace a la sección de generación de informes -->
+        <a href="{{ url_for('contacto') }}">Contacto</a> <!-- Enlace a la sección de contacto -->
+        <a href="{{ url_for('inicio') }}">Cerrar sesión</a> <!-- Enlace para cerrar sesión -->
+    </nav>
+
+    <!-- Sección para la generación de informes -->
+    <section id="reportes">
+        <h2 id="h2_centrado">Generación de Informes</h2> <!-- Título de la sección -->
+
+        <!-- Formulario para consultar productos por rango de fechas -->
+        <form method="POST" action="{{ url_for('buscar_productos') }}" target="_blank" aria-label="Formulario consulta de productos">
+            
+            <!-- Campo de fecha de inicio -->
+            <label for="start-date">Fecha de Inicio:</label>
+            <input type="date" id="fecha_inicio" name="fecha_inicio" required> <!-- Campo obligatorio para seleccionar la fecha de inicio -->
+
+            <!-- Campo de fecha de fin -->
+            <label for="end-date">Fecha de Fin:</label>
+            <input type="date" id="fecha_fin" name="fecha_fin" required> <!-- Campo obligatorio para seleccionar la fecha de fin -->
+            
+            <!-- Botón para enviar el formulario de consulta -->
+            <button id="btn-consulta" type="submit">Consultar productos</button> <!-- Botón que genera el informe -->
+        </form>
+    </section>
+
+    <!-- Pie de página -->
+    <footer>
+        <p>© 2024 Sistema de Gestión de Inventarios</p> <!-- Texto de copyright -->
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- Script para alertas con SweetAlert -->
+    <script src="{{ url_for('static', filename='interacciones.js') }}"></script> <!-- Script para interacciones personalizadas -->
+
+    {% endblock %}
+   
+</body>
+
+
+</html>

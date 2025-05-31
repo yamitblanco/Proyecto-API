@@ -1,0 +1,86 @@
+<!-- Este documento HTML define una página de inicio de sesión para un sistema de gestión de inventarios llamado Stock .Plus -->
+<!DOCTYPE html>
+<html lang="es"> <!-- Establece el idioma del documento como español -->
+
+<head>
+    <!-- Configuración de codificación y metadatos básicos -->
+    <meta charset="UTF-8"> <!-- Define la codificación de caracteres como UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Asegura que el diseño sea responsivo -->
+    <meta name="description" content="Sistema de gestión de inventarios accesible y fácil de usar."> <!-- Breve descripción de la página -->
+    <title>Sistema de Gestión de Inventarios</title> <!-- Título que aparece en la pestaña del navegador -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"> <!-- Enlace a la hoja de estilos CSS -->
+</head>
+
+<body id="inicio"> <!-- Cuerpo de la página con un id para identificarla -->
+
+    <!-- Encabezado principal de la página -->
+    <header>    
+        <h1>Bienvenido a Stock .Plus<br> Tu software de gestión de inventarios</h1>
+    </header>
+
+    <!-- Barra de navegación con enlaces a diferentes secciones del sistema -->
+    <nav id="mapanav_1">
+        <a href="{{ url_for('inicio') }}">Iniciar Sesión</a> <!-- Enlace para ir al inicio de sesión -->
+        <a href="{{ url_for('registro') }}">Registro</a> <!-- Enlace para el registro de un nuevo usuario -->
+        <a href="{{ url_for('contactonoreg') }}">Contacto</a> <!-- Enlace a la sección de contacto -->
+    </nav>
+
+    <!-- Contenido principal de la página -->
+    <main>
+        <section id="inicio_sesion"> <!-- Sección dedicada al inicio de sesión -->
+            <h2>Iniciar Sesión</h2> <!-- Título secundario de la sección -->
+            <div class="iniciov1"> <!-- Contenedor para el formulario de inicio de sesión -->
+
+                <!-- Formulario para capturar las credenciales de inicio de sesión -->
+                <form id="inicio_sesionv2" method="POST" action="/inicio_sesion" aria-label="Formulario de inicio de sesión">
+                    <label for="email">Correo electrónico:</label> <!-- Etiqueta para el campo de correo -->
+                    <input type="email" id="email" name="email" required> <!-- Campo de entrada para el correo electrónico -->
+
+                    <label for="password">Contraseña:</label> <!-- Etiqueta para el campo de contraseña -->
+                    <input type="password" id="contraseña" name="contraseña" required> <!-- Campo de entrada para la contraseña -->
+
+                    <div class="inicio_boton">
+                        <input type="submit" value="Iniciar Sesión"> <!-- Botón de envío del formulario -->
+                    </div>
+                </form>
+                
+            </div>
+        </section>
+    </main>
+
+    <!-- Enlaces adicionales para opciones secundarias -->
+    <div class="derecha">
+        <h5><a href="#">¿Olvidaste tu contraseña?</a></h5> <!-- Enlace para recuperación de contraseña -->
+  
+    <div class="derecha">
+        <h5><a href="{{ url_for('registro') }}">Ir a Regístrate</a></h5> <!-- Enlace al formulario de registro -->
+
+
+    <!-- Pie de página -->
+    <footer>
+        <p>© 2024 Sistema de Gestión de Inventarios</p> <!-- Derechos reservados -->
+    </footer>
+
+    <!-- Scripts para mensajes flash -->
+    <script>
+      // Este script pasará los mensajes flash al archivo JS
+      window.flashMessages = []; // Creamos un array vacío para los mensajes
+
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% for category, message in messages %}
+          // Almacenamos los mensajes en el array window.flashMessages
+          window.flashMessages.push({
+            category: "{{ category }}", // La categoría del mensaje (ej. 'success' o 'error')
+            message: "{{ message }}"    // El mensaje que quieres mostrar
+          });
+        {% endfor %}
+      {% endwith %}
+    </script>
+
+    <!-- Inclusión de SweetAlert desde CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</body>
+
+
+</html>

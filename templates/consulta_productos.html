@@ -1,0 +1,125 @@
+<!DOCTYPE html> <!-- Define el tipo de documento como HTML5 -->
+<html lang="es"> <!-- Establece el idioma del documento como español -->
+
+<head>
+  <meta charset="UTF-8"> <!-- Codificación de caracteres UTF-8 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Diseño responsivo en dispositivos móviles -->
+  <meta name="description" content="Sistema de gestión de inventarios accesible y fácil de usar."> <!-- Descripción para SEO -->
+
+  <title>Sistema de Gestión de Inventarios</title> <!-- Título que se muestra en la pestaña del navegador -->
+
+  <!-- Enlace a la hoja de estilos -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+  <!-- Encabezado principal de la página -->
+  <header>
+    <h1>Bienvenido a Stock .Plus<br>Tu software de gestión de inventarios</h1>
+  </header>
+
+  <!-- Barra de navegación principal -->
+  <nav id="mapanav_4">
+    <a href="{{ url_for('bienvenido') }}">Gestión de Inventario</a>
+    <a href="{{ url_for('informes') }}">Generación de Informes</a>
+    <a href="{{ url_for('contacto') }}">Contacto</a>
+    <a id="cerrarSesion" href="{{ url_for('inicio') }}">Cerrar sesión</a>
+  </nav>
+
+  <!-- Título de la sección de consulta -->
+  <h2>Consulta de Productos</h2>
+  <p><em>Resultados para el rango de fechas: {{ fecha_inicio }} - {{ fecha_fin }}</em></p>
+
+  <!-- Estilos específicos para la tabla de productos -->
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: Arial, sans-serif;
+      margin-top: 20px;
+    }
+
+    thead {
+      background-color: #f2f2f2;
+    }
+
+    th,
+    td {
+      padding: 12px;
+      text-align: center;
+      border: 1px solid #ddd;
+    }
+
+    tbody tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    tbody tr:hover {
+      background-color: #eaeaea;
+    }
+
+    th {
+      background-color: #e0e0e0;
+      color: #333;
+    }
+  </style>
+
+  <!-- Tabla que muestra los productos encontrados -->
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Nombre del Producto</th>
+        <th>Estado</th>
+        <th>Ubicación</th>
+        <th>Cantidad</th>
+        <th>Precio</th>
+        <th>Fecha de Registro</th>
+        <th>Acciones</th> <!-- Columna para botones de editar/eliminar -->
+      </tr>
+    </thead>
+    <tbody>
+      {% if productos %}
+        {% for producto in productos %}
+          <tr>
+            <td>{{ producto[0] }}</td>
+            <td>{{ producto[1] }}</td>
+            <td>{{ producto[2] }}</td>
+            <td>{{ producto[3] }}</td>
+            <td>{{ producto[4] }}</td>
+            <td>{{ producto[5] }}</td>
+            <td>
+              <!-- Formulario para editar producto -->
+              <form method="GET" action="{{ url_for('editar_producto') }}" style="display:inline;">
+                <input type="hidden" name="nombre_producto" value="{{ producto[0] }}">
+                <button type="submit" onclick="return confirm('¿Seguro que quieres editar este producto?')">Editar</button>
+              </form>
+
+              <!-- Formulario para eliminar producto -->
+              <form method="POST" action="{{ url_for('eliminar_producto') }}" style="display:inline;">
+                <input type="hidden" name="nombre_producto" value="{{ producto[0] }}">
+                <button type="submit" onclick="return confirm('¿Estás seguro de que deseas eliminar este producto? Esta acción no se puede deshacer.')">Eliminar</button>
+              </form>
+            </td>
+          </tr>
+        {% endfor %}
+      {% else %}
+        <!-- Mensaje cuando no hay resultados -->
+        <tr>
+          <td colspan="7">No se encontraron productos en este rango de fechas.</td>
+        </tr>
+      {% endif %}
+    </tbody>
+  </table>
+
+  <!-- Pie de página -->
+  <footer>
+    <p>&copy; 2024 Stock Plus</p>
+  </footer>
+
+  <!-- Inclusión de bibliotecas JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- Librería para alertas -->
+  <script src="{{ url_for('static', filename='interacciones.js') }}"></script> <!-- Script personalizado -->
+</body>
+
+</html>
+

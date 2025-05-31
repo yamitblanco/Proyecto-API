@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Stock Plus{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+{% if session.get('usuario_id') %}
+<header class="usuario-info">
+    <p>📅 Fecha: {{ session.usuario_fecha }}</p>
+    <p>⏰ Hora: {{ session.usuario_hora }}</p>
+    <p>👤 Usuario: {{ session.usuario_nombre }}</p>
+    <p>🧾 Rol: {{ session.usuario_rol }}</p>
+</header>
+{% endif %}
+
+<div class="contenido">
+    {% block content %}{% endblock %}
+</div>
+
+</body>
+</html>
+<!--
+    Este es un archivo base para las plantillas de Flask.
+    Contiene la estructura HTML básica y bloques que pueden ser extendidos por otras plantillas.

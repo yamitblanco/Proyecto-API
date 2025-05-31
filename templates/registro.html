@@ -1,0 +1,80 @@
+<!-- Define el tipo de documento como HTML5 -->
+<!DOCTYPE html>
+<html lang="es"> <!-- Establece el idioma del documento como español -->
+
+<head>
+    <!-- Configuración de codificación y metadatos básicos -->
+    <meta charset="UTF-8"> <!-- Define la codificación de caracteres como UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Asegura que el diseño sea responsivo -->
+    <meta name="description" content="Sistema de gestión de inventarios accesible y fácil de usar."> <!-- Breve descripción de la página -->
+    <title>Sistema de Gestión de Inventarios</title> <!-- Título que aparece en la pestaña del navegador -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"> <!-- Enlace a la hoja de estilos CSS -->
+</head>
+
+<body id="registro"> <!-- Comienza el cuerpo del documento con el ID de 'registro' para identificación -->
+
+    <!-- Encabezado principal de la página -->
+    <header>
+        <h1>Bienvenido a Stock .Plus<br> Tu software de gestión de inventarios</h1> <!-- Título principal -->
+    </header>
+
+    <!-- Barra de navegación principal -->
+    <nav id="mapanav_3">
+        <a href="{{ url_for('inicio') }}">Iniciar Sesión</a> <!-- Enlace a la página de inicio de sesión -->
+        <a href="{{ url_for('contactonoreg') }}">Contacto</a> <!-- Enlace a la página de contacto -->
+    </nav>
+
+    <!-- Sección para el registro de nuevos usuarios -->
+    <section id="registrarse">
+
+        <div class="infov1">
+            
+        <h2>Registro de Nuevo Usuario</h2> <!-- Título de la sección -->
+
+        <!-- Formulario para el registro de usuarios -->
+        <form id="registrarse" action="/registro" method="POST" aria-label="Formulario de registro"> <!-- Formulario de registro -->
+
+            <!-- Primera parte de la información del usuario -->
+            
+                <label for="nombres">Nombres:</label> <!-- Etiqueta para el campo de nombres -->
+                <input type="text" id="nombres" name="nombres" required> <!-- Campo de entrada para nombres -->
+
+                <label for="primer_apellido">Primer apellido:</label> <!-- Etiqueta para el primer apellido -->
+                <input type="text" id="primer_apellido" name="primer_apellido" required> <!-- Campo de entrada para primer apellido -->
+
+                <label for="segundo_apellido">Segundo apellido:</label> <!-- Etiqueta para el segundo apellido -->
+                <input type="text" id="segundo_apellido" name="segundo_apellido" required> <!-- Campo de entrada para segundo apellido -->
+
+                <label for="fecha_nacimiento">Fecha de nacimiento:</label> <!-- Etiqueta para la fecha de nacimiento -->
+                <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" required> <!-- Campo de entrada para fecha -->
+           <!-- Cierre del primer contenedor de información -->
+
+            <!-- Segunda parte de la información del usuario -->
+            
+                <label for="telefono">Teléfono:</label> <!-- Etiqueta para el campo de teléfono -->
+                <input type="number" id="telefono" name="telefono" required> <!-- Campo de entrada para el teléfono -->
+
+                <label for="email">Correo Electrónico:</label> <!-- Etiqueta para el correo electrónico -->
+                <input type="email" id="email" name="email" required> <!-- Campo de entrada para el correo electrónico -->
+
+                <label for="contraseña">Contraseña:</label> <!-- Etiqueta para la contraseña -->
+                <input type="password" id="contraseña" name="contraseña" required> <!-- Campo de entrada para la contraseña -->
+            <!-- Cierre del segundo contenedor de información -->
+
+            <!-- Contenedor para el botón de envío del formulario -->
+    
+                <input id="boton_registrarse" type="submit" value="Registrar"> <!-- Botón para registrar al nuevo usuario -->
+            </div>
+        </form> <!-- Cierre del formulario -->
+    </section> <!-- Cierre de la sección de registro -->
+
+    <!-- Pie de página -->
+    <footer>
+        <p>© 2024 Sistema de Gestión de Inventarios</p> <!-- Texto de copyright -->
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- Inclusión de SweetAlert desde CDN -->
+    <script src="{{ url_for('static', filename='interacciones.js') }}"></script> <!-- Enlace a archivo JS para interacciones -->
+</body>
+</html>
